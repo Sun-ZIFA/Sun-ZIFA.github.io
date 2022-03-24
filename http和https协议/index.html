@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">HTTP和HTTPS协议 - Sun&#39;s Blog</title><meta name="Description" content="Bom Bom Bom"><meta property="og:title" content="HTTP和HTTPS协议" />
+<meta property="og:description" content="1.什么是协议？ 网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，有了这种”约定“，不同厂商的生产设备，以及不同操作系统" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-17T16:02:26+08:00" />
+<meta property="article:modified_time" content="2022-03-17T16:02:26+08:00" /><meta property="og:site_name" content="Sun&#39;s Blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
+
+<meta name="twitter:title" content="HTTP和HTTPS协议"/>
+<meta name="twitter:description" content="1.什么是协议？ 网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，有了这种”约定“，不同厂商的生产设备，以及不同操作系统"/>
+<meta name="application-name" content="Sun&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Sun&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" /><link rel="next" href="http://example.org/20%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HTTP和HTTPS协议",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE\/"
+        },"genre": "posts","keywords": "计算机基础","wordcount":  2936 ,
+        "url": "http:\/\/example.org\/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE\/","datePublished": "2022-03-17T16:02:26+08:00","dateModified": "2022-03-17T16:02:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "ZIFA"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/cat/"> 抓住猫咪 </a><a class="menu-item" href="/interesting/"> 别点我 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/cat/" title="">抓住猫咪</a><a class="menu-item" href="/interesting/" title="">别点我</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HTTP和HTTPS协议</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">ZIFA</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-03-17">2022-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2936 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" class="comment_count" data-flag-title="HTTP和HTTPS协议">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count"></span>&nbsp;条评论
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        data-src="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP%e5%92%8cHTTPS%e5%8d%8f%e8%ae%ae.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP%e5%92%8cHTTPS%e5%8d%8f%e8%ae%ae.jpg, https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP%e5%92%8cHTTPS%e5%8d%8f%e8%ae%ae.jpg 1.5x, https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP%e5%92%8cHTTPS%e5%8d%8f%e8%ae%ae.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP和HTTPS协议.jpg"
+        title="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP和HTTPS协议.jpg" height="auto" width="auto"
+    /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#1什么是协议"><strong>1.什么是协议？</strong></a></li>
+                <li><a href="#2http协议是什么"><strong>2.HTTP协议是什么？</strong></a></li>
+                <li><a href="#3http原理"><strong>3.HTTP原理</strong></a></li>
+                <li><a href="#4http特点"><strong>4.HTTP特点</strong></a></li>
+                <li><a href="#5uri和url的区别"><strong>5.URI和URL的区别</strong></a></li>
+                <li><a href="#6http报文组成"><strong>6.HTTP报文组成</strong></a>
+                  <ul>
+                    <li><a href="#请求报文构成"><strong>请求报文构成</strong></a></li>
+                    <li><a href="#响应报文构成"><strong>响应报文构成</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#7常见请求方法"><strong>7.常见请求方法</strong></a>
+                  <ul>
+                    <li><a href="#get请求"><strong>get请求</strong></a></li>
+                    <li><a href="#post请求"><strong>post请求</strong></a></li>
+                    <li><a href="#post和get的区别"><strong>post和get的区别：</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#8响应状态码"><strong>8.响应状态码</strong></a>
+                  <ul>
+                    <li><a href="#状态码分类"><strong>状态码分类</strong>：</a></li>
+                    <li><a href="#常见状态码"><strong>常见状态码</strong>：</a></li>
+                  </ul>
+                </li>
+                <li><a href="#9为什么要用https"><strong>9.为什么要用https？</strong></a>
+                  <ul>
+                    <li><a href="#一般http中存在如下问题"><strong>一般http中存在如下问题：</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#10什么是https"><strong>10.什么是HTTPS?</strong></a>
+                  <ul>
+                    <li><a href="#那么ssl又是什么"><strong>那么SSL又是什么？</strong></a></li>
+                    <li><a href="#ssl发展史互联网加密通信"><strong>SSL发展史（互联网加密通信）</strong></a></li>
+                  </ul>
+                </li>
+                <li><a href="#11浏览器在使用https传输数据的流程是什么"><strong>11.浏览器在使用HTTPS传输数据的流程是什么？</strong></a></li>
+                <li><a href="#12https的缺点"><strong>12.HTTPS的缺点</strong></a></li>
+                <li><a href="#13总结https和http的区别"><strong>13.总结HTTPS和HTTP的区别</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h5 id="1什么是协议"><strong>1.什么是协议？</strong></h5>
+<p>网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，有了这种”约定“，不同厂商的生产设备，以及不同操作系统组成的计算机之间，就可以实现通信。</p>
+<h5 id="2http协议是什么"><strong>2.HTTP协议是什么？</strong></h5>
+<p>HTTP协议是<strong>超文本传输协议</strong>的缩写，英文是Hyper Text Transfer Protocol。它是从WEB服务器传输超文本标记语言(HTML)到本地浏览器的传送协议。</p>
+<p>设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。</p>
+<p>HTPP有多个版本，目前广泛使用的是HTTP/1.1版本。</p>
+<h5 id="3http原理"><strong>3.HTTP原理</strong></h5>
+<p>HTTP是一个基于TCP/IP通信协议来传递数据的协议，传输的数据类型为HTML 文件,、图片文件, 查询结果等。</p>
+<p>HTTP协议一般用于B/S架构（）。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。</p>
+<p>我们以访问百度为例：</p>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg, https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-fbef2c48d13068978904f3d1688728ab_1440w.jpg"
+    /></p>
+<h5 id="4http特点"><strong>4.HTTP特点</strong></h5>
+<ol>
+<li>http协议支持客户端/服务端模式，也是一种请求/响应模式的协议。</li>
+<li>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。</li>
+<li>灵活：HTTP允许传输任意类型的数据对象。传输的类型由Content-Type加以标记。</li>
+<li>无连接：限制每次连接只处理一个请求。服务器处理完请求，并收到客户的应答后，即断开连接，但是却不利于客户端与服务器保持会话连接，为了弥补这种不足，产生了两项记录http状态的技术，一个叫做Cookie,一个叫做Session。</li>
+<li>无状态：无状态是指协议对于事务处理没有记忆，后续处理需要前面的信息，则必须重传。</li>
+</ol>
+<h5 id="5uri和url的区别"><strong>5.URI和URL的区别</strong></h5>
+<p>HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。</p>
+<ul>
+<li>URI：Uniform Resource Identifier 统一资源<strong>标识</strong>符</li>
+<li>URL：Uniform Resource Location 统一资源<strong>定位</strong>符</li>
+</ul>
+<p>URI 是用来标示 一个具体的资源的，我们可以通过 URI 知道一个资源是什么。</p>
+<p>URL 则是用来定位具体的资源的，标示了一个具体的资源位置。互联网上的每个文件都有一个唯一的URL。</p>
+<h5 id="6http报文组成"><strong>6.HTTP报文组成</strong></h5>
+<h6 id="请求报文构成"><strong>请求报文构成</strong></h6>
+<ol>
+<li>请求行：包括请求方法、URL、协议/版本</li>
+<li>请求头(Request Header)</li>
+<li>请求正文</li>
+</ol>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg, https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+    /></p>
+<h6 id="响应报文构成"><strong>响应报文构成</strong></h6>
+<ol>
+<li>状态行</li>
+<li>响应头</li>
+<li>响应正文</li>
+</ol>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg, https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-58506e2188987db01ffb1589e208d83b_1440w.jpg"
+    /></p>
+<h5 id="7常见请求方法"><strong>7.常见请求方法</strong></h5>
+<ul>
+<li>GET:请求指定的页面信息，并返回实体主体。</li>
+<li>POST:向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</li>
+<li>HEAD:类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</li>
+<li>PUT:从客户端向服务器传送的数据取代指定的文档的内容。</li>
+<li>DELETE:请求服务器删除指定的页面。</li>
+</ul>
+<h6 id="get请求"><strong>get请求</strong></h6>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg, https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-c3de118ff545b4d49e07874063c34a4f_1440w.jpg"
+    /></p>
+<h6 id="post请求"><strong>post请求</strong></h6>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg, https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-770cc76b2cb7da75d04a886015a9565b_1440w.jpg"
+    /></p>
+<h6 id="post和get的区别"><strong>post和get的区别：</strong></h6>
+<ul>
+<li>都包含请求头请求行，post多了请求body。</li>
+<li>get多用来查询，请求参数放在url中，不会对服务器上的内容产生作用。post用来提交，如把账号密码放入body中。</li>
+<li>GET是直接添加到URL后面的，直接就可以在URL中看到内容，而POST是放在报文内部的，用户无法直接看到。</li>
+<li>GET提交的数据长度是有限制的，因为URL长度有限制，具体的长度限制视浏览器而定。而POST没有。</li>
+</ul>
+<h5 id="8响应状态码"><strong>8.响应状态码</strong></h5>
+<p><strong>访问一个网页时，浏览器会向web服务器发出请求。此网页所在的服务器会返回一个包含HTTP状态码的信息头用以响应浏览器的请求。</strong></p>
+<h6 id="状态码分类"><strong>状态码分类</strong>：</h6>
+<ul>
+<li>1XX- 信息型，服务器收到请求，需要请求者继续操作。</li>
+<li>2XX- 成功型，请求成功收到，理解并处理。</li>
+<li>3XX - 重定向，需要进一步的操作以完成请求。</li>
+<li>4XX - 客户端错误，请求包含语法错误或无法完成请求。</li>
+<li>5XX - 服务器错误，服务器在处理请求的过程中发生了错误。</li>
+</ul>
+<h6 id="常见状态码"><strong>常见状态码</strong>：</h6>
+<ul>
+<li>200 OK - 客户端请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>302 - 临时跳转</li>
+<li>400 Bad Request - 客户端请求有语法错误，不能被服务器所理解</li>
+<li>401 Unauthorized - 请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用</li>
+<li>404 - 请求资源不存在，可能是输入了错误的URL</li>
+<li>500 - 服务器内部发生了不可预期的错误</li>
+<li>503 Server Unavailable - 服务器当前不能处理客户端的请求，一段时间后可能恢复正常。</li>
+</ul>
+<h5 id="9为什么要用https"><strong>9.为什么要用https？</strong></h5>
+<p>实际使用中，绝大说的网站现在都采用的是https协议，这也是未来互联网发展的趋势。下面是通过wireshark抓取的一个博客网站的登录请求过程。</p>
+<p><img
+        class="lazyload"
+        data-src="https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg"
+        data-srcset="https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg, https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg 1.5x, https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg"
+        title="https://pic1.zhimg.com/80/v2-f300863d073601e3a14affae37cedae8_1440w.jpg"
+    /></p>
+<p>可以看到访问的账号密码都是明文传输， 这样客户端发出的请求很容易被不法分子截取利用，因此，HTTP协议不适合传输一些敏感信息，比如：各种账号、密码等信息，使用http协议传输隐私信息非常不安全。</p>
+<h6 id="一般http中存在如下问题"><strong>一般http中存在如下问题：</strong></h6>
+<ul>
+<li>请求信息明文传输，容易被窃听截取。</li>
+<li>数据的完整性未校验，容易被篡改</li>
+<li>没有验证对方身份，存在冒充危险</li>
+</ul>
+<h5 id="10什么是https"><strong>10.什么是HTTPS?</strong></h5>
+<p>为了解决上述HTTP存在的问题，就用到了HTTPS。</p>
+<p>HTTPS 协议（HyperText Transfer Protocol over Secure Socket Layer）：一般理解为HTTP+SSL/TLS，通过 SSL证书来验证服务器的身份，并为浏览器和服务器之间的通信进行加密。</p>
+<h6 id="那么ssl又是什么"><strong>那么SSL又是什么？</strong></h6>
+<p>SSL（Secure Socket Layer，安全套接字层）：1994年为 Netscape 所研发，SSL 协议位于 TCP/IP 协议与各种应用层协议之间，为数据通讯提供安全支持。</p>
+<p>TLS（Transport Layer Security，传输层安全）：其前身是 SSL，它最初的几个版本（SSL 1.0、SSL 2.0、SSL 3.0）由网景公司开发，1999年从 3.1 开始被 IETF 标准化并改名，发展至今已经有 TLS 1.0、TLS 1.1、TLS 1.2 三个版本。SSL3.0和TLS1.0由于存在安全漏洞，已经很少被使用到。TLS 1.3 改动会比较大，目前还在草案阶段，目前使用最广泛的是TLS 1.1、TLS 1.2。</p>
+<h6 id="ssl发展史互联网加密通信"><strong>SSL发展史（互联网加密通信）</strong></h6>
+<ol>
+<li>1994年NetSpace公司设计SSL协议（Secure Sockets Layout）1.0版本，但未发布。</li>
+<li>1995年NetSpace发布SSL/2.0版本，很快发现有严重漏洞</li>
+<li>1996年发布SSL/3.0版本，得到大规模应用</li>
+<li>1999年，发布了SSL升级版TLS/1.0版本，目前应用最广泛的版本</li>
+<li>2006年和2008年，发布了TLS/1.1版本和TLS/1.2版本</li>
+</ol>
+<h5 id="11浏览器在使用https传输数据的流程是什么"><strong>11.浏览器在使用HTTPS传输数据的流程是什么？</strong></h5>
+<p><img
+        class="lazyload"
+        data-src="https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg"
+        data-srcset="https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg, https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg 1.5x, https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg 2x"
+        data-sizes="auto"
+        alt="https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg"
+        title="https://pic4.zhimg.com/80/v2-a994fbf3094d737814fe01c2b919477b_1440w.jpg"
+    /></p>
+<ol>
+<li>首先客户端通过URL访问服务器建立SSL连接。</li>
+<li>服务端收到客户端请求后，会将网站支持的证书信息（证书中包含公钥）传送一份给客户端。</li>
+<li>客户端的服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</li>
+<li>客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</li>
+<li>服务器利用自己的私钥解密出会话密钥。</li>
+<li>服务器利用会话密钥加密与客户端之间的通信。</li>
+</ol>
+<h5 id="12https的缺点"><strong>12.HTTPS的缺点</strong></h5>
+<ul>
+<li>HTTPS协议多次握手，导致页面的加载时间延长近50%；</li>
+<li>HTTPS连接缓存不如HTTP高效，会增加数据开销和功耗；</li>
+<li>申请SSL证书需要钱，功能越强大的证书费用越高。</li>
+<li>SSL涉及到的安全算法会消耗 CPU 资源，对服务器资源消耗较大。</li>
+</ul>
+<h5 id="13总结https和http的区别"><strong>13.总结HTTPS和HTTP的区别</strong></h5>
+<ul>
+<li>HTTPS是HTTP协议的安全版本，HTTP协议的数据传输是明文的，是不安全的，HTTPS使用了SSL/TLS协议进行了加密处理。</li>
+<li>http和https使用连接方式不同，默认端口也不一样，http是80，https是443。</li>
+</ul>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        class="lazyload"
+        data-src="https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp"
+        data-srcset="https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp, https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp 1.5x, https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp 2x"
+        data-sizes="auto"
+        alt="https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp"
+        title="https://www.gravatar.com/avatar/54eefd77cf6123ddb68a454eb7754755?s=240&amp;d=mp"
+    /></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有所帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/1697838602" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-03-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议" data-hashtags="计算机基础"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-hashtag="计算机基础"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议" data-image="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP和HTTPS协议.jpg"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/" data-title="HTTP和HTTPS协议"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/20%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="next" rel="next" title="20个常用的正则表达式协议">20个常用的正则表达式协议<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">ZIFA</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/waline/Waline.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":15},"comment":{"waline":{"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba"],"highlight":true,"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageSize":10,"requiredMeta":["nick","mail"],"serverURL":"https://blog-comment-rob6ztass-sun-zifa.vercel.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>计算机基础 - 标签 - Sun&#39;s Blog</title>
+        <link>http://example.org/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+        <description>计算机基础 - 标签 - Sun&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1697838602@qq.com (ZIFA)</managingEditor>
+            <webMaster>1697838602@qq.com (ZIFA)</webMaster><lastBuildDate>Thu, 17 Mar 2022 16:02:26 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+    <title>HTTP和HTTPS协议</title>
+    <link>http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/</link>
+    <pubDate>Thu, 17 Mar 2022 16:02:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://cdn.jsdelivr.net/gh/Sun-ZIFA/myPicturetown/images/HTTP%e5%92%8cHTTPS%e5%8d%8f%e8%ae%ae.jpg" referrerpolicy="no-referrer">
+            </div>1.什么是协议？ 网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，有了这种”约定“，不同厂商的生产设备，以及不同操作系统]]></description>
+</item></channel>
+</rss>
