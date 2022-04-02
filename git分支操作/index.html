@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Git分支操作 - Sun&#39;s Blog</title><meta name="Description" content="Bom Bom Bom"><meta property="og:title" content="Git分支操作" />
+<meta property="og:description" content="什么是分支 在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" /><meta property="og:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-02T10:50:26+08:00" />
+<meta property="article:modified_time" content="2022-04-02T10:50:26+08:00" /><meta property="og:site_name" content="Sun&#39;s Blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/>
+
+<meta name="twitter:title" content="Git分支操作"/>
+<meta name="twitter:description" content="什么是分支 在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上"/>
+<meta name="application-name" content="Sun&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Sun&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" /><link rel="prev" href="http://example.org/git%E5%AE%89%E8%A3%85/" /><link rel="next" href="http://example.org/github%E6%93%8D%E4%BD%9C/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Git分支操作",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C\/"
+        },"genre": "posts","keywords": "WPF, Prism","wordcount":  1284 ,
+        "url": "http:\/\/example.org\/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C\/","datePublished": "2022-04-02T10:50:26+08:00","dateModified": "2022-04-02T10:50:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "ZIFA"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/cat/"> 抓住猫咪 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/cat/" title="">抓住猫咪</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git分支操作</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://github.com/Sun-ZIFA" title="Author" target="_blank" rel="noopener noreffer author" class="author">ZIFA</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/wpf/"><i class="far fa-folder fa-fw"></i>WPF</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-02">2022-04-02</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-04-02">2022-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1284 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" class="comment_count" data-flag-title="Git分支操作">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count"></span>&nbsp;条评论
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp" height="auto" width="auto"
+    /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是分支">什么是分支</a></li>
+    <li><a href="#分支的好处">分支的好处</a></li>
+    <li><a href="#分支的操作">分支的操作</a>
+      <ul>
+        <li><a href="#查看分支">查看分支</a></li>
+        <li><a href="#创建分支">创建分支</a></li>
+        <li><a href="#切换分支">切换分支</a></li>
+        <li><a href="#合并分支">合并分支</a></li>
+        <li><a href="#产生冲突">产生冲突</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><br/>
+<h2 id="什么是分支">什么是分支</h2>
+<p>在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行。对于初学者而言，分支可以简单理解为副本，一个分支就是一个单独的副本。（分支底层其实也是指针的引用）</p>
+<br/>
+<h2 id="分支的好处">分支的好处</h2>
+<p>同时并行推进多个功能开发，提高开发效率。</p>
+<p>各个分支在开发过程中，如果某一个分支开发失败，不会对其他分支有任何影响。失败的分支删除重新开始即可。</p>
+<br/>
+<h2 id="分支的操作">分支的操作</h2>
+<table>
+<thead>
+<tr>
+<th>命令名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git branch 分支名</td>
+<td>创建分支</td>
+</tr>
+<tr>
+<td>git branch -v</td>
+<td>查看分支</td>
+</tr>
+<tr>
+<td>git checkout 分支名</td>
+<td>切换分支</td>
+</tr>
+<tr>
+<td>git merge 分支名</td>
+<td>把指定的分支合并到当前分支上</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查看分支">查看分支</h3>
+<blockquote>
+<p>git branch -v</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git branch -v
+</span></span><span class="line"><span class="cl">* master a6fa5e1 first commit （*代表当前所在的分区）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建分支">创建分支</h3>
+<blockquote>
+<p>git branch 分支名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git branch hot-fix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git branch -v
+</span></span><span class="line"><span class="cl">  hot-fix a6fa5e1 first commit
+</span></span><span class="line"><span class="cl">* master  a6fa5e1 first commit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="切换分支">切换分支</h3>
+<blockquote>
+<p>git checkout 分支名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git checkout hot-fix
+</span></span><span class="line"><span class="cl">Switched to branch &#39;hot-fix&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="合并分支">合并分支</h3>
+<blockquote>
+<p>git merge 分支名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">//切换到hot-fix分支
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git checkout hot-fix
+</span></span><span class="line"><span class="cl">Switched to branch &#39;hot-fix&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//修改hot-fix分支下的hello.txt Welcome to you
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//添加到暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;hot-fix first commit&#34; hello.txt
+</span></span><span class="line"><span class="cl">[hot-fix 7aab108] hot-fix first commit
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+), 1 deletion(-)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//切换到主分区master
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git checkout master
+</span></span><span class="line"><span class="cl">Switched to branch &#39;master&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//在主分区master下合并hot-fix分区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git merge hot-fix
+</span></span><span class="line"><span class="cl">Updating a6fa5e1..7aab108
+</span></span><span class="line"><span class="cl">Fast-forward
+</span></span><span class="line"><span class="cl"> hello.txt | 2 +-
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+), 1 deletion(-)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//查看hello.txt文件 已经修改
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ cat hello.txt
+</span></span><span class="line"><span class="cl">Hello World! Welcome to you!
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="产生冲突">产生冲突</h3>
+<p>冲突产生的表现：后面状态为 MERGING</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master|MERGING)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>冲突产生的原因：</p>
+<p>合并分支时，两个分支在同一个文件的同一个位置有两套完全不同的修改。Git 无法替
+我们决定使用哪一个。必须人为决定新代码内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">//修改master分支上的hello.txt 添加一行Hello WPF！
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//添加到暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;update 1&#34; hello.txt
+</span></span><span class="line"><span class="cl">[master 4e3f85c] update 1
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//切换到hot-fix分区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git checkout hot-fix
+</span></span><span class="line"><span class="cl">Switched to branch &#39;hot-fix&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//修改hot-fix分区的hello.txt 添加一行Hello Git！
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//添加到暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;update 2&#34;
+</span></span><span class="line"><span class="cl">[hot-fix fc47191] update 2
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//切换到master主分区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (hot-fix)
+</span></span><span class="line"><span class="cl">$ git checkout master
+</span></span><span class="line"><span class="cl">Switched to branch &#39;master&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//合并hot-fix分区，提示需要手动合并代码 后面状态为MERGING
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git merge hot-fix
+</span></span><span class="line"><span class="cl">Auto-merging hello.txt
+</span></span><span class="line"><span class="cl">CONFLICT (content): Merge conflict in hello.txt
+</span></span><span class="line"><span class="cl">Automatic merge failed; fix conflicts and then commit the result.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//编辑有冲突的文件hello.txt，删除特殊符号，保留要使用的内容
+</span></span><span class="line"><span class="cl">//特殊符号：<span class="err">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="nt">&lt; HEAD</span> <span class="na">当前分支的代码 =</span><span class="s">======</span> <span class="err">合并过来的代码</span> <span class="nt">&gt;</span>&gt;&gt;&gt;&gt;&gt;&gt; hot-fix
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master|MERGING)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//添加到暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master|MERGING)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库时不能带文件名，不然报错
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master|MERGING)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;update 3&#34; hello.txt
+</span></span><span class="line"><span class="cl">fatal: cannot do a partial commit during a merge.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master|MERGING)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;update 3&#34;
+</span></span><span class="line"><span class="cl">[master cd27077] update 3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//发现后面MERGING消失，变为正常
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有所帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/1697838602" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作" data-hashtags="WPF,Prism"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-hashtag="WPF"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作" data-image="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/" data-title="Git分支操作"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wpf/">WPF</a>,&nbsp;<a href="/tags/prism/">Prism</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/git%E5%AE%89%E8%A3%85/" class="prev" rel="prev" title="Git安装"><i class="fas fa-angle-left fa-fw"></i>Git安装</a>
+            <a href="/github%E6%93%8D%E4%BD%9C/" class="next" rel="next" title="GitHub操作">GitHub操作<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Sun-ZIFA" target="_blank" rel="noopener noreferrer">ZIFA</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?3e1c1409132ddf6607c73a0fa0b78be8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/waline/Waline.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":15},"comment":{"waline":{"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba"],"highlight":true,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"requiredMeta":["nick","mail"],"serverURL":"https://blog-comment-bhywmfu62-sun-zifa.vercel.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

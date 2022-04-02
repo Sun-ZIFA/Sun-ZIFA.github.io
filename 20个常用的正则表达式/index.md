@@ -5,7 +5,7 @@
 
 &nbsp;
 
-**1、手机号码的校验** 
+# **1、手机号码的校验** 
 
 ```javascript
 const phoneReg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
@@ -20,7 +20,7 @@ console.log(phoneReg.test(phoneStr2)) // false
 
 &nbsp;
 
-**2、身份证的校验** 
+# **2、身份证的校验** 
 
 ```javascript
 const sfzReg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
@@ -35,7 +35,7 @@ console.log(sfzReg.test(sfzStr2)) // false
 
 &nbsp;
 
-**3、邮箱的校验** 
+# **3、邮箱的校验** 
 
 ```javascript
 const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
@@ -52,7 +52,7 @@ console.log(emailReg.test(noEmail)) // false
 
 &nbsp;
 
-**4、URL的校验** 
+# **4、URL的校验** 
 
 ```javascript
 const urlReg = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
@@ -67,7 +67,7 @@ console.log(urlReg.test(urlStr2)) // false
 
 &nbsp;
 
-**5、IPv4的校验** 
+# **5、IPv4的校验** 
 
 ```javascript
 const ipv4Reg = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
@@ -82,7 +82,7 @@ console.log(ipv4Reg.test(ipv4Str2)) // false
 
 &nbsp;
 
-**6、16进制颜色的校验** 
+# **6、16进制颜色的校验** 
 
 ```javascript
 const color16Reg = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/
@@ -97,7 +97,7 @@ console.log(color16Reg.test(color16Str2)) // false
 
 &nbsp;
 
-**7、日期 YYYY-MM-DD** 
+# **7、日期 YYYY-MM-DD** 
 
 ```javascript
 const dateReg = /^\d{4}(\-)\d{1,2}\1\d{1,2}$/
@@ -112,7 +112,7 @@ console.log(dateReg.test(dateStr2)) // false
 
 &nbsp;
 
-**8、日期 YYYY-MM-DD hh:mm:ss** 
+# **8、日期 YYYY-MM-DD hh:mm:ss** 
 
 ```javascript
 const dateReg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/
@@ -127,7 +127,7 @@ console.log(dateReg.test(dateStr2)) // false
 
 &nbsp;
 
-**9、整数的校验** 
+# **9、整数的校验** 
 
 ```javascript
 const intReg = /^[-+]?\d*$/
@@ -142,7 +142,7 @@ console.log(intReg.test(intNum2)) // false
 
 &nbsp;
 
-**10、小数的校验** 
+# **10、小数的校验** 
 
 ```javascript
 const floatReg = /^[-\+]?\d+(\.\d+)?$/
@@ -154,7 +154,7 @@ console.log(floatReg.test(floatNum)) // true
 
 &nbsp;
 
-**11、保留n位小数** 
+# **11、保留n位小数** 
 
 ```javascript
 function checkFloat(n) {
@@ -176,7 +176,7 @@ console.log(floatReg.test(floatNum3)) // false
 
 &nbsp;
 
-**12、邮政编号的校验** 
+# **12、邮政编号的校验** 
 
 ```javascript
 const postalNoReg = /^\d{6}$/
@@ -191,7 +191,7 @@ console.log(postalNoReg.test(postalNoStr2)) // false
 
 &nbsp;
 
-**13、QQ号的校验** 
+# **13、QQ号的校验** 
 
 > 说明：5-11位数字
 > 
@@ -209,7 +209,7 @@ console.log(qqReg.test(qqStr2)) // false
 
 &nbsp;
 
-**14、微信号的校验** 
+# **14、微信号的校验** 
 
 > 说明：6至20位，以字母开头，字母，数字，减号，下划线
 
@@ -226,7 +226,7 @@ console.log(wxReg.test(wxStr2)) // false
 
 &nbsp;
 
-**15、车牌号的校验** 
+# **15、车牌号的校验** 
 
 ```javascript
 const carNoReg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/
@@ -241,7 +241,7 @@ console.log(carNoReg.test(carNoStr2)) // false
 
 &nbsp;
 
-**16、只含字母的字符串** 
+# **16、只含字母的字符串** 
 
 ```javascript
 const letterReg = /^[a-zA-Z]+$/
@@ -256,7 +256,7 @@ console.log(letterReg.test(letterStr2)) // false
 
 &nbsp;
 
-**17、包含中文的字符串** 
+# **17、包含中文的字符串** 
 
 ```javascript
 const cnReg = /[\u4E00-\u9FA5]/
@@ -271,7 +271,7 @@ console.log(cnReg.test(cnStr2)) // false
 
 &nbsp;
 
-**18、密码强度的校验** 
+# **18、密码强度的校验** 
 
 > 说明：密码中必须包含字母、数字、特称字符，至少8个字符，最多30个字符
 
@@ -288,7 +288,7 @@ console.log(passwordReg.test(password2)) // false
 
 &nbsp;
 
-**19、字符串长度n的校验** 
+# **19、字符串长度n的校验** 
 
 ```javascript
 function checkStrLength(n) {
@@ -308,7 +308,7 @@ console.log(lengthReg.test(str2)) // false
 
 &nbsp;
 
-**20、文件拓展名的校验** 
+# **20、文件拓展名的校验** 
 
 ```javascript
 function checkFileName (arr) {

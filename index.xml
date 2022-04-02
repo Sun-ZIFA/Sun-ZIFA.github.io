@@ -4,25 +4,97 @@
         <link>http://example.org/</link>
         <description>Bom Bom Bom</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1697838602@qq.com (ZIFA)</managingEditor>
-            <webMaster>1697838602@qq.com (ZIFA)</webMaster><lastBuildDate>Sun, 20 Mar 2022 11:10:26 &#43;0800</lastBuildDate>
+            <webMaster>1697838602@qq.com (ZIFA)</webMaster><lastBuildDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>GitHub操作</title>
+    <link>http://example.org/github%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/github%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021606886.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 GitHub 官方网址：https://github.com 创建远程仓库 输入仓库名点击创建 远程仓库操作 命令名称 作用 git remote -v 查看当前所有远程地址别名 git remote add]]></description>
+</item><item>
+    <title>Git分支操作</title>
+    <link>http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp" referrerpolicy="no-referrer">
+            </div>什么是分支 在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上]]></description>
+</item><item>
+    <title>Git安装</title>
+    <link>http://example.org/git%E5%AE%89%E8%A3%85/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%AE%89%E8%A3%85/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021611654.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 Git官方地址：https://git-scm.com/ 根据自己电脑系统安装最新的Git，安装过程中所有配置可以直接默认下一步 选择 Git 安装位]]></description>
+</item><item>
+    <title>Git常用命令</title>
+    <link>http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp" referrerpolicy="no-referrer">
+            </div>命令名称 作用 git config &ndash; global user.name 用户名 设置用户签名 git config &ndash; global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息”]]></description>
+</item><item>
+    <title>Git概述</title>
+    <link>http://example.org/git%E6%A6%82%E8%BF%B0/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E6%A6%82%E8%BF%B0/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608005.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 Git是一个免费的、开源的分布式版本控制系统 什么是版本控制 记录文件修改历史记录，能让用户查看历史版本，方便版本切换 为什么需要版本控制 个人开]]></description>
+</item><item>
+    <title>配置默认首页</title>
+    <link>http://example.org/%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E9%A6%96%E9%A1%B5/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E9%A6%96%E9%A1%B5/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021600661.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 在WPF应用程序+Prism框架中，一般都是使用Navigation导航进行区域页面的切换，当我配置默认首页的时候出现了一些问题，所以这里]]></description>
+</item><item>
     <title>20个常用的正则表达式协议</title>
     <link>http://example.org/20%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
     <pubDate>Sun, 20 Mar 2022 11:10:26 &#43;0800</pubDate><author>
         <name>ZIFA</name>
     </author><guid>http://example.org/20%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202203301609515.jpg" referrerpolicy="no-referrer">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021602256.jpg/webp" referrerpolicy="no-referrer">
             </div>日常开发中会有很多经常使用的正则表达式，这里整理20个常用的正则，可以方便以后使用，提高开发效率，copy使我快乐 1、手机号码的校验 1 2 3 4]]></description>
 </item><item>
-    <title>HTTP和HTTPS协议</title>
-    <link>http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/</link>
-    <pubDate>Thu, 17 Mar 2022 16:02:26 &#43;0800</pubDate><author>
+    <title>主题文档 - 基本概念</title>
+    <link>http://example.org/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+    <pubDate>Thu, 01 Apr 2021 19:40:32 &#43;0800</pubDate><author>
         <name>ZIFA</name>
-    </author><guid>http://example.org/http%E5%92%8Chttps%E5%8D%8F%E8%AE%AE/</guid>
+    </author><guid>http://example.org/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202203301609514.jpg" referrerpolicy="no-referrer">
-            </div>1.什么是协议？ 网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，有了这种”约定“，不同厂商的生产设备，以及不同操作系统]]></description>
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021551152.webp" referrerpolicy="no-referrer">
+            </div><p>探索 Hugo - <strong>DoIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
+</item><item>
+    <title>Emoji 支持</title>
+    <link>http://example.org/emoji%E6%94%AF%E6%8C%81/</link>
+    <pubDate>Thu, 01 Apr 2021 15:55:28 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/emoji%E6%94%AF%E6%8C%81/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021551126.webp" referrerpolicy="no-referrer">
+            </div><p>Emoji 可以通过多种方式在 Hugo 项目中启用.</p>]]></description>
+</item><item>
+    <title>主题文档 - 内容</title>
+    <link>http://example.org/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3%E5%86%85%E5%AE%B9/</link>
+    <pubDate>Thu, 01 Apr 2021 14:30:05 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/%E4%B8%BB%E9%A2%98%E6%96%87%E6%A1%A3%E5%86%85%E5%AE%B9/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021551239.webp" referrerpolicy="no-referrer">
+            </div><p>了解如何在 <strong>DoIt</strong> 主题中快速, 直观地创建和组织内容.</p>]]></description>
 </item></channel>
 </rss>

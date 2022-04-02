@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Git常用命令 - Sun&#39;s Blog</title><meta name="Description" content="Bom Bom Bom"><meta property="og:title" content="Git常用命令" />
+<meta property="og:description" content="命令名称 作用 git config &ndash; global user.name 用户名 设置用户签名 git config &ndash; global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息”" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><meta property="og:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-02T10:50:26+08:00" />
+<meta property="article:modified_time" content="2022-04-02T10:50:26+08:00" /><meta property="og:site_name" content="Sun&#39;s Blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/>
+
+<meta name="twitter:title" content="Git常用命令"/>
+<meta name="twitter:description" content="命令名称 作用 git config &ndash; global user.name 用户名 设置用户签名 git config &ndash; global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息”"/>
+<meta name="application-name" content="Sun&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Sun&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><link rel="prev" href="http://example.org/git%E6%A6%82%E8%BF%B0/" /><link rel="next" href="http://example.org/git%E5%AE%89%E8%A3%85/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Git常用命令",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/"
+        },"genre": "posts","keywords": "WPF, Prism","wordcount":  1288 ,
+        "url": "http:\/\/example.org\/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/","datePublished": "2022-04-02T10:50:26+08:00","dateModified": "2022-04-02T10:50:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "ZIFA"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/cat/"> 抓住猫咪 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/cat/" title="">抓住猫咪</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git常用命令</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://github.com/Sun-ZIFA" title="Author" target="_blank" rel="noopener noreffer author" class="author">ZIFA</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/wpf/"><i class="far fa-folder fa-fw"></i>WPF</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-02">2022-04-02</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-04-02">2022-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1288 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="comment_count" data-flag-title="Git常用命令">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count"></span>&nbsp;条评论
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp" height="auto" width="auto"
+    /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#设置用户签名">设置用户签名</a></li>
+    <li><a href="#初始化本地库">初始化本地库</a></li>
+    <li><a href="#查看本地库状态">查看本地库状态</a></li>
+    <li><a href="#添加暂存区">添加暂存区</a></li>
+    <li><a href="#提交到本地库">提交到本地库</a></li>
+    <li><a href="#修改文件">修改文件</a></li>
+    <li><a href="#历史版本">历史版本</a>
+      <ul>
+        <li><a href="#查看历史版本">查看历史版本</a></li>
+        <li><a href="#版本穿梭">版本穿梭</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><table>
+<thead>
+<tr>
+<th>命令名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git config &ndash; global user.name 用户名</td>
+<td>设置用户签名</td>
+</tr>
+<tr>
+<td>git config &ndash; global user.email 邮箱</td>
+<td>设置用户签名</td>
+</tr>
+<tr>
+<td>git init</td>
+<td>初始化本地库</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>查看本地库状态</td>
+</tr>
+<tr>
+<td>git add 文件名</td>
+<td>添加到暂存区</td>
+</tr>
+<tr>
+<td>git commit -m “日志信息” 文件名</td>
+<td>提交到本地库</td>
+</tr>
+<tr>
+<td>git reflog</td>
+<td>查看历史记录</td>
+</tr>
+<tr>
+<td>git reset &ndash; hard 版本号</td>
+<td>版本穿梭</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<h2 id="设置用户签名">设置用户签名</h2>
+<p>签名的作用是区分不同操作者身份。用户的签名信息在每一个版本的提交信息中能够看到，以此确认本次提交是谁做的。Git 首次安装必须设置一下用户签名，否则无法提交代码。</p>
+<p>这里设置用户签名和将来登录 GitHub（或其他代码托管中心）的账号没有任何关系。</p>
+<blockquote>
+<p>git config &ndash;global user.name 用户名</p>
+<p>git config &ndash;global user.email 邮箱</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 ~
+</span></span><span class="line"><span class="cl">$ git config --global user.name ZIFA
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 ~
+</span></span><span class="line"><span class="cl">$ git config --global user.email 1697838602@qq.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="初始化本地库">初始化本地库</h2>
+<blockquote>
+<p>git init</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test
+</span></span><span class="line"><span class="cl">$ git init
+</span></span><span class="line"><span class="cl">Initialized empty Git repository in E:/Test/Git_Test/.git/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>初始化会在项目地址生成.git文件夹，需要显示隐藏文件</p>
+<br/>
+<h2 id="查看本地库状态">查看本地库状态</h2>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p>首次查看 工作区没有任何文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">No commits yet
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nothing to commit (create/copy files and use &#34;git add&#34; to track)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新增hello.txt文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">//内容：Hello World！
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次查看 检测到未追踪的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">No commits yet
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Untracked files:
+</span></span><span class="line"><span class="cl">  (use &#34;git add <span class="nt">&lt;file&gt;</span>...&#34; to include in what will be committed)
+</span></span><span class="line"><span class="cl">        hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nothing added to commit but untracked files present (use &#34;git add&#34; to track)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="添加暂存区">添加暂存区</h2>
+<blockquote>
+<p>git add 文件名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">warning: LF will be replaced by CRLF in hello.txt.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看状态 检测到暂存区有新文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">No commits yet
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git rm --cached <span class="nt">&lt;file&gt;</span>...&#34; to unstage)
+</span></span><span class="line"><span class="cl">        new file:   hello.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="提交到本地库">提交到本地库</h2>
+<blockquote>
+<p>git commit -m “日志信息” 文件名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;first commit&#34; hello.txt
+</span></span><span class="line"><span class="cl">warning: LF will be replaced by CRLF in hello.txt.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span><span class="line"><span class="cl">[master (root-commit) a6fa5e1] first commit
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+)
+</span></span><span class="line"><span class="cl"> create mode 100644 hello.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看状态 没有文件需要提交</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="修改文件">修改文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">//修改hello.txt里面的内容 另添加一行Hello Git！
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ vim hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//查看状态 检测到工作区有文件被修改
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes not staged for commit:
+</span></span><span class="line"><span class="cl">  (use &#34;git add <span class="nt">&lt;file&gt;</span>...&#34; to update what will be committed)
+</span></span><span class="line"><span class="cl">  (use &#34;git restore <span class="nt">&lt;file&gt;</span>...&#34; to discard changes in working directory)
+</span></span><span class="line"><span class="cl">        modified:   hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//将修改的文件再次添加到暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git add hello.txt
+</span></span><span class="line"><span class="cl">warning: LF will be replaced by CRLF in hello.txt.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//查看状态 工作区的修改添加到了暂存区
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  (use &#34;git restore --staged <span class="nt">&lt;file&gt;</span>...&#34; to unstage)
+</span></span><span class="line"><span class="cl">        modified:   hello.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//提交到本地库
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;second commit&#34; hello.txt
+</span></span><span class="line"><span class="cl">warning: LF will be replaced by CRLF in hello.txt.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span><span class="line"><span class="cl">[master 6935bb4] second commit
+</span></span><span class="line"><span class="cl"> 1 file changed, 1 insertion(+)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//查看状态
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">nothing to commit, working tree clean
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="历史版本">历史版本</h2>
+<h3 id="查看历史版本">查看历史版本</h3>
+<blockquote>
+<p>git reflog 查看版本信息
+git log 查看版本详细信息</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git reflog
+</span></span><span class="line"><span class="cl">6935bb4 (HEAD -&gt; master) HEAD@{0}: commit: second commit
+</span></span><span class="line"><span class="cl">a6fa5e1 HEAD@{1}: commit (initial): first commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git log
+</span></span><span class="line"><span class="cl">commit 6935bb458799fafc90d83a30345dc154f634ef16 (HEAD -&gt; master)
+</span></span><span class="line"><span class="cl">Author: liuzifa <span class="nt">&lt;1697838602</span><span class="err">@qq.com</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">Date:   Wed Mar 30 10:00:11 2022 +0800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    second commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit a6fa5e1bd1b3bc5f757cf434241868b80622d0dc
+</span></span><span class="line"><span class="cl">Author: liuzifa <span class="nt">&lt;1697838602</span><span class="err">@qq.com</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">Date:   Wed Mar 30 09:19:37 2022 +0800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    first commit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="版本穿梭">版本穿梭</h3>
+<blockquote>
+<p>git reset &ndash;hard 版本号</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">//首先查看当前的历史记录，可以看到当前是在 6935bb4 这个版本
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git reflog
+</span></span><span class="line"><span class="cl">6935bb4 (HEAD -&gt; master) HEAD@{0}: commit: second commit
+</span></span><span class="line"><span class="cl">a6fa5e1 HEAD@{1}: commit (initial): first commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//切换到 a6fa5e1 版本，也就是我们第一次提交的版本
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git reset --hard a6fa5e1
+</span></span><span class="line"><span class="cl">HEAD is now at a6fa5e1 first commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//切换完毕之后再查看历史记录，当前成功切换到了 a6fa5e1 版本
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ git reflog
+</span></span><span class="line"><span class="cl">a6fa5e1 (HEAD -&gt; master) HEAD@{0}: reset: moving to a6fa5e1
+</span></span><span class="line"><span class="cl">6935bb4 HEAD@{1}: commit: second commit
+</span></span><span class="line"><span class="cl">a6fa5e1 (HEAD -&gt; master) HEAD@{2}: commit (initial): first commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//然后查看文件 hello.txt，发现文件内容已经变化
+</span></span><span class="line"><span class="cl">ZIFA@LAPTOP-OU8IUASF MINGW64 /e/Test/Git_Test (master)
+</span></span><span class="line"><span class="cl">$ cat hello.txt
+</span></span><span class="line"><span class="cl">Hello World!
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有所帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/1697838602" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令" data-hashtags="WPF,Prism"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-hashtag="WPF"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令" data-image="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-title="Git常用命令"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/wpf/">WPF</a>,&nbsp;<a href="/tags/prism/">Prism</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/git%E6%A6%82%E8%BF%B0/" class="prev" rel="prev" title="Git概述"><i class="fas fa-angle-left fa-fw"></i>Git概述</a>
+            <a href="/git%E5%AE%89%E8%A3%85/" class="next" rel="next" title="Git安装">Git安装<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Sun-ZIFA" target="_blank" rel="noopener noreferrer">ZIFA</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?3e1c1409132ddf6607c73a0fa0b78be8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/waline/Waline.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":15},"comment":{"waline":{"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba"],"highlight":true,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"requiredMeta":["nick","mail"],"serverURL":"https://blog-comment-bhywmfu62-sun-zifa.vercel.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

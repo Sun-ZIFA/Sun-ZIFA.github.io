@@ -1,0 +1,62 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Prism - 标签 - Sun&#39;s Blog</title>
+        <link>http://example.org/tags/prism/</link>
+        <description>Prism - 标签 - Sun&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>1697838602@qq.com (ZIFA)</managingEditor>
+            <webMaster>1697838602@qq.com (ZIFA)</webMaster><lastBuildDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/prism/" rel="self" type="application/rss+xml" /><item>
+    <title>GitHub操作</title>
+    <link>http://example.org/github%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/github%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021606886.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 GitHub 官方网址：https://github.com 创建远程仓库 输入仓库名点击创建 远程仓库操作 命令名称 作用 git remote -v 查看当前所有远程地址别名 git remote add]]></description>
+</item><item>
+    <title>Git分支操作</title>
+    <link>http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608955.jpg/webp" referrerpolicy="no-referrer">
+            </div>什么是分支 在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上]]></description>
+</item><item>
+    <title>Git安装</title>
+    <link>http://example.org/git%E5%AE%89%E8%A3%85/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%AE%89%E8%A3%85/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021611654.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 Git官方地址：https://git-scm.com/ 根据自己电脑系统安装最新的Git，安装过程中所有配置可以直接默认下一步 选择 Git 安装位]]></description>
+</item><item>
+    <title>Git常用命令</title>
+    <link>http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021607859.jpg/webp" referrerpolicy="no-referrer">
+            </div>命令名称 作用 git config &ndash; global user.name 用户名 设置用户签名 git config &ndash; global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息”]]></description>
+</item><item>
+    <title>Git概述</title>
+    <link>http://example.org/git%E6%A6%82%E8%BF%B0/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/git%E6%A6%82%E8%BF%B0/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021608005.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 Git是一个免费的、开源的分布式版本控制系统 什么是版本控制 记录文件修改历史记录，能让用户查看历史版本，方便版本切换 为什么需要版本控制 个人开]]></description>
+</item><item>
+    <title>配置默认首页</title>
+    <link>http://example.org/%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E9%A6%96%E9%A1%B5/</link>
+    <pubDate>Sat, 02 Apr 2022 10:50:26 &#43;0800</pubDate><author>
+        <name>ZIFA</name>
+    </author><guid>http://example.org/%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E9%A6%96%E9%A1%B5/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204021600661.jpg/webp" referrerpolicy="no-referrer">
+            </div>💡 在WPF应用程序+Prism框架中，一般都是使用Navigation导航进行区域页面的切换，当我配置默认首页的时候出现了一些问题，所以这里]]></description>
+</item></channel>
+</rss>
