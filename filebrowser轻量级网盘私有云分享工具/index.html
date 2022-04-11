@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">FileBrowser轻量级网盘（私有云）分享工具 - Sun&#39;s Blog</title><meta name="Description" content="Bom Bom Bom"><meta property="og:title" content="FileBrowser轻量级网盘（私有云）分享工具" />
+<meta property="og:description" content="想搭建自己的个人分享网盘，可以方便分享上传小文件，可以直接下载，所以就使用FileBrowser来搭建自己的私有云盘 FileBrowser官" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" /><meta property="og:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-10T10:50:26+08:00" />
+<meta property="article:modified_time" content="2022-04-10T10:50:26+08:00" /><meta property="og:site_name" content="Sun&#39;s Blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/images/%E7%94%B7%E7%94%9F%E9%9D%92.png"/>
+
+<meta name="twitter:title" content="FileBrowser轻量级网盘（私有云）分享工具"/>
+<meta name="twitter:description" content="想搭建自己的个人分享网盘，可以方便分享上传小文件，可以直接下载，所以就使用FileBrowser来搭建自己的私有云盘 FileBrowser官"/>
+<meta name="application-name" content="Sun&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Sun&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" /><link rel="prev" href="http://example.org/github%E6%93%8D%E4%BD%9C/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "FileBrowser轻量级网盘（私有云）分享工具",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7\/"
+        },"genre": "posts","keywords": "FileBrowser","wordcount":  1469 ,
+        "url": "http:\/\/example.org\/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7\/","datePublished": "2022-04-10T10:50:26+08:00","dateModified": "2022-04-10T10:50:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "ZIFA"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/cat/"> 抓住猫咪 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sun&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Sun&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/cat/" title="">抓住猫咪</a><a class="menu-item" href="/about/" title="">关于</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">FileBrowser轻量级网盘（私有云）分享工具</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="https://github.com/Sun-ZIFA" title="Author" target="_blank" rel="noopener noreffer author" class="author">ZIFA</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%A7%81%E6%9C%89%E4%BA%91/"><i class="far fa-folder fa-fw"></i>私有云</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-10">2022-04-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-04-10">2022-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1469 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" class="comment_count" data-flag-title="FileBrowser轻量级网盘（私有云）分享工具">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count"></span>&nbsp;条评论
+                    </span>&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp" height="auto" width="auto"
+    /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#服务器配置">服务器配置</a></li>
+    <li><a href="#宝塔安装">宝塔安装</a></li>
+    <li><a href="#安装docker">安装Docker</a></li>
+    <li><a href="#安装filebrowser">安装FileBrowser</a></li>
+    <li><a href="#配置filebrowser">配置FileBrowser</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><br/>
+<p>想搭建自己的个人分享网盘，可以方便分享上传小文件，可以直接下载，所以就使用FileBrowser来搭建自己的私有云盘</p>
+<p>FileBrowser官网地址：https://github.com/filebrowser/filebrowser</p>
+<br/>
+<h2 id="服务器配置">服务器配置</h2>
+<p>建议在有活动的时候购买服务器，常见的服务器：<a href="https://curl.qcloud.com/BCHO4DcO" target="_blank" rel="noopener noreffer">腾讯云</a>，<a href="https://www.aliyun.com/activity/new?userCode=cfziz7jb" target="_blank" rel="noopener noreffer">阿里云</a>，购买地址带了我的返佣链接，如果介意直接百度去官网买就好了哈。</p>
+<p>服务器配置看个人需求吧,根据预设来选择，购买时会让你选择系统，建议Centos7</p>
+<p>可以使用SSH工具进行远程服务器，推荐finallshell和xshell，可以去官网下载安装</p>
+<br/>
+<h2 id="宝塔安装">宝塔安装</h2>
+<p>去<a href="https://www.bt.cn/new/index.html" target="_blank" rel="noopener noreffer">宝塔官网</a>安装，选择Linux面板，现在适合自己服务器系统的命令，复制命令到ssh安装</p>
+<p>我这里使用的是centos7安装命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838613.png/webp"
+    /></p>
+<p>安装完成后去服务器控制台放行8888端口</p>
+<p>登录宝塔外网地址，用安装时生成的账号密码登录，可以一键安装宝塔推荐的一些LNMP</p>
+<br/>
+<h2 id="安装docker">安装Docker</h2>
+<blockquote>
+<p>万物皆可Docker</p>
+</blockquote>
+<p>装完宝塔再安装Docker就超级简单，宝塔面板点击软件商店，搜索docker然后安装</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838614.png/webp"
+    /></p>
+<blockquote>
+<p>国内拉取镜像可能特别慢，可以配置一些镜像加速器，这样提高下载速率</p>
+</blockquote>
+<p>宝塔面板👉软件商店👉Docker设置👉加速器👉复制下面内容👉保存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{&#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;https://hub-mirror.c.163.com&#34;, &#34;https://mirror.baidubce.com&#34;, &#34;https://reg-mirror.qiniu.com&#34;]}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>四个分别是科大镜像、网易镜像、百度镜像、七牛云镜像</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838615.png/webp"
+    /></p>
+<br/>
+<h2 id="安装filebrowser">安装FileBrowser</h2>
+<p>宝塔面板点击文件，创建两个文件夹filebrowser和yalida（可以自定义名字），filebrowser是数据文件，yalida是分享文件存放目录</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838616.png/webp"
+    /></p>
+<br/>
+<p>filebrowser文件夹下再创建config和database文件夹，config下创建配置文件settings.json，database下创建数据库文件filebrowser.db，目录树如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── filebrowser
+</span></span><span class="line"><span class="cl">│   ├── config
+</span></span><span class="line"><span class="cl">│   │   └── settings.json
+</span></span><span class="line"><span class="cl">│   └── database
+</span></span><span class="line"><span class="cl">│       └── filebrowser.db
+</span></span><span class="line"><span class="cl">├── yalida
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<p>双击编辑settings.json文件，输入以下内容并保存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;baseURL&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="s2">&#34;stdout&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;database&#34;</span><span class="p">:</span> <span class="s2">&#34;/database/filebrowser.db&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;root&#34;</span><span class="p">:</span> <span class="s2">&#34;/srv&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<p>然后一键安装FileBrowser，ssh工具中输入以下命令（需要一行一行输入！！！）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo docker run -d \
+</span></span><span class="line"><span class="cl">    -v /www/wwwroot/yalida:/srv \  
+</span></span><span class="line"><span class="cl">    -v /www/wwwroot/filebrowser/database/filebrowser.db:/database/filebrowser.db \
+</span></span><span class="line"><span class="cl">    -v /www/wwwroot/filebrowser/config/settings.json:/config/settings.json \
+</span></span><span class="line"><span class="cl">    -e PUID=$(id -u) \
+</span></span><span class="line"><span class="cl">    -e PGID=$(id -g) \
+</span></span><span class="line"><span class="cl">    -p 8080:80 \
+</span></span><span class="line"><span class="cl">    --name=share \
+</span></span><span class="line"><span class="cl">    --privileged=true \
+</span></span><span class="line"><span class="cl">    --restart always \
+</span></span><span class="line"><span class="cl">filebrowser/filebrowser:v2-s6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>容器内文件夹**/srv<strong>映射的</strong>/yalida<strong>目录就是站点根目录，需要分享的文件放在</strong>/yalida**目录下即可。</p>
+<p>映射的8080端口不要和其他服务冲突，同时要在在宝塔和云平台放行端口。</p>
+<p>最后，可以通过ip+端口来访问filebrowser了，初始用户和密码都是admin。</p>
+<br/>
+<h2 id="配置filebrowser">配置FileBrowser</h2>
+<p>去Setting里面修改语言为中文，点击update，然后修改密码，点击更新</p>
+<br/>
+<p>可以开启用户注册、设定用户权限、自定义品牌信息，可以建立多个用户访问，同时可以指定权限和目录范围。这里的[<strong>.</strong>]代表就是根目录。</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838617.png/webp"
+    /></p>
+<br/>
+<p>在 设置-全局设置-品牌-实例名称 进行修改</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838611.png/webp"
+    /></p>
+<br/>
+<p>在映射的根目录yalida下新建一个style文件夹，来管理自定义品牌信息，logo.svg和img目录，custom.css用来自定义样式，目录树如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── yalida
+</span></span><span class="line"><span class="cl">│   └── style
+</span></span><span class="line"><span class="cl">│       ├── custom.css
+</span></span><span class="line"><span class="cl">│       └── img
+</span></span><span class="line"><span class="cl">│           ├── icons
+</span></span><span class="line"><span class="cl">│           └── logo.svg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<p>由于是Docker部署，所以品牌信息文件夹路径填/srv/style，同时勾选禁用外部链接选项</p>
+<p><img
+        class="lazyload"
+        data-src="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp"
+        data-srcset="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp 1.5x, https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp 2x"
+        data-sizes="auto"
+        alt="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp"
+        title="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110838612.png/webp"
+    /></p>
+<br/>
+<p>logo.svg主要是控制站点的登录logo和管理面板左上角的logo，如果想修改favicon图标，可以在/style/img/icons目录下定义不同的icon图标，可以参考<a href="https://github.com/filebrowser/frontend/tree/master/public/img/icons" target="_blank" rel="noopener noreffer">官方文档</a>，推荐一个<a href="https://realfavicongenerator.net/" target="_blank" rel="noopener noreffer">网站图标生成器</a>，可以很容易生成这些文件。</p>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有所帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/1697838602" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-10</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具" data-hashtags="FileBrowser"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-hashtag="FileBrowser"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具" data-image="https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204110834779.jpg/webp"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Myspace" data-sharer="myspace" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 Blogger" data-sharer="blogger" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="http://example.org/filebrowser%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%9B%98%E7%A7%81%E6%9C%89%E4%BA%91%E5%88%86%E4%BA%AB%E5%B7%A5%E5%85%B7/" data-title="FileBrowser轻量级网盘（私有云）分享工具"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/filebrowser/">FileBrowser</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/github%E6%93%8D%E4%BD%9C/" class="prev" rel="prev" title="GitHub操作"><i class="fas fa-angle-left fa-fw"></i>GitHub操作</a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/Sun-ZIFA" target="_blank" rel="noopener noreferrer">ZIFA</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?3e1c1409132ddf6607c73a0fa0b78be8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/waline/Waline.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":15},"comment":{"waline":{"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba"],"highlight":true,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"requiredMeta":["nick","mail"],"serverURL":"https://blog-comment-bhywmfu62-sun-zifa.vercel.app"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>
