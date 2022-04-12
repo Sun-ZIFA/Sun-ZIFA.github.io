@@ -3,7 +3,7 @@
 
 <br/>
 
-想搭建自己的个人分享网盘，可以方便分享上传小文件，可以直接下载，所以就使用FileBrowser来搭建自己的私有云盘
+因为分享自己的js等文件十分不方便，所以就想搭建一个自己的个人分享云盘，可以随时随地上传小文件，无限制下载，经过筛选，最终决定使用FileBrowser来搭建自己的私有云盘分享工具，只需要一个云服务器。
 
 FileBrowser官网地址：https://github.com/filebrowser/filebrowser
 
@@ -162,4 +162,6 @@ filebrowser/filebrowser:v2-s6
 <br/>
 
 logo.svg主要是控制站点的登录logo和管理面板左上角的logo，如果想修改favicon图标，可以在/style/img/icons目录下定义不同的icon图标，可以参考[官方文档](https://github.com/filebrowser/frontend/tree/master/public/img/icons)，推荐一个[网站图标生成器](https://realfavicongenerator.net/)，可以很容易生成这些文件。
+
+![](https://blogs-1302550430.cos.ap-guangzhou.myqcloud.com/images/202204111027677.png)
 
